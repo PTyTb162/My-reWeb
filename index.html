@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Переход в Telegram...</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin: 0 auto 30px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .countdown {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 30px 0;
+            color: #f1c40f;
+        }
+        .manual-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+        .manual-link:hover {
+            transform: scale(1.05);
+        }
+        .warning {
+            margin-top: 30px;
+            font-size: 14px;
+            opacity: 0.8;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px;
+        }
+    </style>
+    
+    <!-- Яндекс.Метрика -->
+    <!-- ЗАМЕНИ 106759328 на свой ID счетчика -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106759328', 'ym');
+
+        ym(106759328, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            ecommerce: "dataLayer",
+            referrer: document.referrer,
+            url: location.href,
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/106759328" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+</head>
+<body>
+    <!-- Фейковые ссылки для маскировки -->
+    <div style="display:none;">
+        <a href="https://t.me/support_robot">Поддержка</a>
+        <a href="https://t.me/help_center_bot">Помощь</a>
+        <a href="https://t.me/contact_admin">Администратор</a>
+        <span>Email: contact@example.com</span>
+        <span>Phone: +7 (000) 000-00-00</span>
+    </div>
+
+    <div class="container">
+        <div class="loader"></div>
+        <h1>🔐 Безопасное перенаправление</h1>
+        <p>Идет проверка и подготовка перехода в Telegram...</p>
+        
+        <div class="countdown" id="countdown">3</div>
+        
+        <p>Автоматический переход через <span id="seconds">3</span> сек.</p>
+        
+        <a href="#" class="manual-link" id="manualRedirect">
+            ⚡ Немедленный переход
+        </a>
+        
+        <div class="warning">
+            <strong>ℹ️ Информация:</strong> Если переход не произошел автоматически,<br>
+            нажмите кнопку выше или найдите контакт в Telegram вручную.
+        </div>
+    </div>
+
+    <script>
+        // ================= КОНФИГУРАЦИЯ =================
+        // ЗАШИФРОВАННАЯ ССЫЛКА НА TELEGRAM (base64 от https://t.me/un_copy)
+        // Чтобы изменить ссылку:
+        // 1. Закодируй новую ссылку в base64 (например через https://www.base64encode.org/)
+        // 2. Замени строку ниже
+        var ENCODED_LINK = "aHR0cHM6Ly90Lm1lL3VuX2NvcHk=";
+        
+        // Задержка перед редиректом (миллисекунды)
+        var REDIRECT_DELAY = 1000; // 1.5 секунды
+        // =================================================
+        
+        // Декодируем ссылку из base64
+        function getRealLink() {
+            return atob(ENCODED_LINK);
+        }
+        
+        // Инициализация
+        var realLink = getRealLink();
+        var countdownElement = document.getElementById('countdown');
+        var secondsElement = document.getElementById('seconds');
+        var manualLinkElement = document.getElementById('manualRedirect');
+        var countdownValue = 3;
+        var intervalTime = REDIRECT_DELAY / 3; // 3 обновления за время задержки
+        var redirectExecuted = false;
+        
+        // Настраиваем ручную ссылку
+        manualLinkElement.href = realLink;
+        
+        // Функция редиректа
+        function performRedirect() {
+            if (redirectExecuted) return;
+            redirectExecuted = true;
+            
+            // Отправляем цель в Метрику
+            try {
+                ym(106759328, 'reachGoal', 'auto_redirect');
+            } catch (e) {
+                console.log("Метрика не загрузилась");
+            }
+            
+            // Переход
+            window.location.href = realLink;
+        }
+        
+        // Обратный отсчет
+        function updateCountdown() {
+            countdownValue--;
+            if (countdownValue > 0) {
+                countdownElement.textContent = countdownValue;
+                secondsElement.textContent = countdownValue;
+            } else {
+                countdownElement.textContent = "✓";
+                countdownElement.style.color = "#2ecc71";
+            }
+        }
+        
+        // Ручной переход
+        manualLinkElement.addEventListener('click', function(e) {
+            e.preventDefault();
+            try {
+                ym(106759328, 'reachGoal', 'manual_click');
+            } catch (e) {
+                console.log("Метрика не загрузилась для ручного клика");
+            }
+            window.location.href = realLink;
+        });
+        
+        // Запускаем обратный отсчет
+        var countdownInterval = setInterval(function() {
+            if (countdownValue > 0) {
+                updateCountdown();
+            } else {
+                clearInterval(countdownInterval);
+            }
+        }, intervalTime);
+        
+        // Автоматический редирект
+        setTimeout(performRedirect, REDIRECT_DELAY);
+        
+        // Ложные данные в консоль для маскировки
+        console.log("Система безопасности активирована");
+        console.log("Все проверки пройдены успешно");
+    </script>
+    
+    <!-- Для пользователей без JavaScript -->
+    <noscript>
+        <style> .loader, .countdown { display: none; } </style>
+        <div class="container" style="background: rgba(231, 76, 60, 0.2);">
+            <h1>❌ Требуется JavaScript</h1>
+            <p>Для безопасного перехода необходимо включить JavaScript в настройках браузера.</p>
+            <p><strong>Альтернативные действия:</strong></p>
+            <ol style="text-align: left; display: inline-block;">
+                <li>Включите JavaScript и обновите страницу (F5)</li>
+                <li>Откройте Telegram и найдите контакт вручную</li>
+                <li>Используйте поиск по имени: <strong>un_copy</strong></li>
+            </ol>
+            <p style="margin-top: 20px; font-size: 12px; opacity: 0.7;">
+                По соображениям безопасности прямая ссылка недоступна.
+            </p>
+        </div>
+    </noscript>
+</body>
+</html>
