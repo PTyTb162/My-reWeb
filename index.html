@@ -73,14 +73,13 @@
     </style>
     
     <!-- Яндекс.Метрика -->
-    <!-- ЗАМЕНИ 106759328 на свой ID счетчика -->
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();
             for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106759328', 'ym');
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106765400', 'ym');
 
         ym(106759328, 'init', {
             ssr: true,
@@ -93,7 +92,7 @@
             trackLinks: true
         });
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/106759328" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript><div><img src="https://mc.yandex.ru/watch/106765400" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 </head>
 <body>
     <!-- Фейковые ссылки для маскировки -->
@@ -101,8 +100,8 @@
         <a href="https://t.me/support_robot">Поддержка</a>
         <a href="https://t.me/help_center_bot">Помощь</a>
         <a href="https://t.me/contact_admin">Администратор</a>
-        <span>Email: contact@example.com</span>
-        <span>Phone: +7 (000) 000-00-00</span>
+        <span>Email: contacthelpp@mail.ru</span>
+        <span>Phone: +7 (995) 270-77-69</span>
     </div>
 
     <div class="container">
@@ -125,51 +124,36 @@
     </div>
 
     <script>
-        // ================= КОНФИГУРАЦИЯ =================
-        // ЗАШИФРОВАННАЯ ССЫЛКА НА TELEGRAM (base64 от https://t.me/un_copy)
-        // Чтобы изменить ссылку:
-        // 1. Закодируй новую ссылку в base64 (например через https://www.base64encode.org/)
-        // 2. Замени строку ниже
         var ENCODED_LINK = "aHR0cHM6Ly90Lm1lL3VuX2NvcHk=";
+        var REDIRECT_DELAY = 1000;
         
-        // Задержка перед редиректом (миллисекунды)
-        var REDIRECT_DELAY = 1000; // 1.5 секунды
-        // =================================================
-        
-        // Декодируем ссылку из base64
         function getRealLink() {
             return atob(ENCODED_LINK);
         }
         
-        // Инициализация
         var realLink = getRealLink();
         var countdownElement = document.getElementById('countdown');
         var secondsElement = document.getElementById('seconds');
         var manualLinkElement = document.getElementById('manualRedirect');
         var countdownValue = 3;
-        var intervalTime = REDIRECT_DELAY / 3; // 3 обновления за время задержки
+        var intervalTime = REDIRECT_DELAY / 3;
         var redirectExecuted = false;
         
-        // Настраиваем ручную ссылку
         manualLinkElement.href = realLink;
         
-        // Функция редиректа
         function performRedirect() {
             if (redirectExecuted) return;
             redirectExecuted = true;
             
-            // Отправляем цель в Метрику
             try {
-                ym(106759328, 'reachGoal', 'auto_redirect');
+                ym(106765400, 'reachGoal', 'auto_redirect');
             } catch (e) {
                 console.log("Метрика не загрузилась");
             }
             
-            // Переход
             window.location.href = realLink;
         }
         
-        // Обратный отсчет
         function updateCountdown() {
             countdownValue--;
             if (countdownValue > 0) {
@@ -181,18 +165,16 @@
             }
         }
         
-        // Ручной переход
         manualLinkElement.addEventListener('click', function(e) {
             e.preventDefault();
             try {
-                ym(106759328, 'reachGoal', 'manual_click');
+                ym(106765400, 'reachGoal', 'manual_click');
             } catch (e) {
                 console.log("Метрика не загрузилась для ручного клика");
             }
             window.location.href = realLink;
         });
         
-        // Запускаем обратный отсчет
         var countdownInterval = setInterval(function() {
             if (countdownValue > 0) {
                 updateCountdown();
@@ -201,15 +183,12 @@
             }
         }, intervalTime);
         
-        // Автоматический редирект
         setTimeout(performRedirect, REDIRECT_DELAY);
         
-        // Ложные данные в консоль для маскировки
         console.log("Система безопасности активирована");
         console.log("Все проверки пройдены успешно");
     </script>
     
-    <!-- Для пользователей без JavaScript -->
     <noscript>
         <style> .loader, .countdown { display: none; } </style>
         <div class="container" style="background: rgba(231, 76, 60, 0.2);">
